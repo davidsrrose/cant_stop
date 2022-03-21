@@ -9,6 +9,8 @@
 # outputs:
 
 # notes on improvements and additions to function
+# assumes that the goal matrix is filled from first index and then over
+# works wrong if this isnt the case!
 # stupid to calculate the vector of all possible die combos every time
 # re-do to just have a global vector of that info to pull
 #-------------------------------------------------------------------------------
@@ -18,17 +20,33 @@ optimal_sum_picker <- function(sums = summer(roller()),
     # matrix to store sums and probability
     sums_and_roll_p <- cbind(sums, c(0, 0, 0))
 
-    colnames(sums_and_roll_p) <- c("sum_1", "sum_2", "roll_p")
-    # rownames(sums_and_roll_p) <- c("pair_1", "pair_2", "pair_3")
-    print(sums)
+    colnames(sums_and_roll_p) <- c(
+        "sum_1",
+        "sum_2",
+        "roll_p"
+    )
 
-    # calculate roll probability for 0 goals
-    if (goals[1] & goals[2] & goals[3] == 0) {
+    # calculate roll probabilities for 0 goals
+    if (goals[1] == 0) {
         for (i in i:3) {
-            print("for loopss")
-            print(sums[i, 1])
-            print(sums[i, 2])
             sums_and_roll_p[i, 3] <- advance_probability(sums[i, 1], sums[i, 2])
+            print("0 goals")
+        }
+    }
+
+    # calculate roll probabilites for 1 goal
+    if (goals[1] != 0 && goals[2] == 0) {
+        for (i in i:3) {
+            sums_and_roll_p[i, 3] <- advance_probability(sums[i, 1], sums[i, 2], goals[1])
+            print("1 goal")
+        }
+    }
+
+    # calculate roll probabilites for 2 goals
+    if (goals[2] != 0) {
+        for (i in i:3) {
+            sums_and_roll_p[i, 3] <- advance_probability(sums[i, 1], sums[i, 2])
+            print("2 goals")
         }
     }
 
