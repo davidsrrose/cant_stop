@@ -11,6 +11,7 @@
 sum_score_df_generator <- function(sums,
                                    game_board_df,
                                    goals) {
+
     # initalize variables
     # vector of metrics about sum pairs, for deciding which sum to use
     sum_score_df <- data.frame(matrix(0, nrow = 3, ncol = 10))
@@ -33,6 +34,7 @@ sum_score_df_generator <- function(sums,
         "goal_3_percent_complete"
     )
 
+
     for (i in 1:3) {
         sum_score_df[i, ] <- sum_score_vector_generator(
             sums[i, ],
@@ -41,4 +43,5 @@ sum_score_df_generator <- function(sums,
         )
     }
     return(sum_score_df)
+    print(sum_score_df)
 }

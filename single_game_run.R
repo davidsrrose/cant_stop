@@ -61,16 +61,24 @@ single_game_run <- function() {
         # roll dice and get potential sums
         sums <- summer(roller())
 
-        # calculate metrics for the sums
+        # grab "scoring" for the sums
         sum_score_df <- sum_score_df_generator(
             sums,
             game_board_df,
             goals
         )
+
+        #choose a sum
+        sums_chosen <- chuck_logic(
+            sums,
+            game_board_df,
+            sum_score_df,
+            goals
+        )
+
         print("here")
         print(sum_score_df)
         print(sums)
-        # choose which sum pair to pick
 
 
 
