@@ -30,7 +30,6 @@ optimal_sum_picker <- function(sums = summer(roller()),
     if (goals[1] == 0) {
         for (i in i:3) {
             sums_and_roll_p[i, 3] <- advance_probability(sums[i, 1], sums[i, 2])
-            print("0 goals")
         }
     }
 
@@ -38,7 +37,6 @@ optimal_sum_picker <- function(sums = summer(roller()),
     if (goals[1] != 0 && goals[2] == 0) {
         for (i in i:3) {
             sums_and_roll_p[i, 3] <- advance_probability(sums[i, 1], sums[i, 2], goals[1])
-            print("1 goal")
         }
     }
 
@@ -46,7 +44,6 @@ optimal_sum_picker <- function(sums = summer(roller()),
     if (goals[2] != 0) {
         for (i in i:3) {
             sums_and_roll_p[i, 3] <- advance_probability(sums[i, 1], sums[i, 2])
-            print("2 goals")
         }
     }
 
