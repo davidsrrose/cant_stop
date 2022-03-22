@@ -46,5 +46,4 @@ sum_score_df_generator <- function(sums,
         )
     }
     return(sum_score_df)
-    print(sum_score_df)
 }
