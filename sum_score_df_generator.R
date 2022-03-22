@@ -14,7 +14,7 @@ sum_score_df_generator <- function(sums,
 
     # initalize variables
     # vector of metrics about sum pairs, for deciding which sum to use
-    sum_score_df <- data.frame(matrix(0, nrow = 3, ncol = 10))
+    sum_score_df <- data.frame(matrix(0, nrow = 3, ncol = 13))
     # label sum score dataframe
     rownames(sum_score_df) <- c(
         "sum_pair_1",
@@ -31,7 +31,10 @@ sum_score_df_generator <- function(sums,
         "goal_3_rolls_to_complete",
         "goal_1_percent_complete",
         "goal_2_percent_complete",
-        "goal_3_percent_complete"
+        "goal_3_percent_complete",
+        "goal_1_advance_probability",
+        "goal_2_advance_probability",
+        "goal_3_advance_probability"
     )
 
 

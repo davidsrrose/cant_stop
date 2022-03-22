@@ -14,7 +14,7 @@ sum_score_vector_generator <- function(sum_pair,
                                        goals) {
     # initalize variables
     # vector of metrics about sum pairs, for deciding which sum to use
-    sum_score_vector <- rep(0, 10)
+    sum_score_vector <- rep(0, 13)
 
     # calculate metrics
     # 1 goal 1 advancement
@@ -58,5 +58,14 @@ sum_score_vector_generator <- function(sum_pair,
                     game_board_df$rolls_needed_to_capture[goals[i] - 1]
         }
     }
+
+    # 11 goal 1 advance probability
+    # 12 goal 2 advance probability
+    # 13 goal 3 advance probability
+    for (i in 1:3) {
+        sum_score_vector[i + 10] <-
+            advance_probability(sum_pair[1], sum_pair[2], goals[i])
+    }
+
     return(sum_score_vector)
 }
