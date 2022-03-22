@@ -45,8 +45,9 @@ single_game_run <- function() {
     # sums chosen for turn
     sums_chosen <- c(0, 0)
 
+    # UPDATE THIS BACK TO 0 AFTER TESTING###############################################
     # goal numbers for our game
-    goals <- c(0, 0, 0)
+    goals <- c(4, 0, 0)
 
     # dataframe of metrics about potential roll
     sum_score_df <- data.frame(matrix(0, nrow = 3, ncol = 10))
@@ -68,7 +69,7 @@ single_game_run <- function() {
             goals
         )
 
-        #choose a sum
+        # choose a sum
         sums_chosen <- chuck_logic(
             sums,
             game_board_df,
@@ -76,9 +77,7 @@ single_game_run <- function() {
             goals
         )
 
-        print("here")
-        print(sum_score_df)
-        print(sums)
+
 
 
 
