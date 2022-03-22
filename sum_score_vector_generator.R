@@ -7,6 +7,7 @@
 
 # notes on improvements and additions to function
 # this seems extremely bad and confusing - got to be a better way??
+# put different metric calculations into their own functions?
 
 #-------------------------------------------------------------------------------
 sum_score_vector_generator <- function(sum_pair,
@@ -41,7 +42,7 @@ sum_score_vector_generator <- function(sum_pair,
         # only if goal is non-zero
         if (goals[i] != 0) {
             sum_score_vector[i + 4] <-
-                game_board_df$rolls_needed_to_capture[goals[i] - 1] -
+                game_board_df$rolls_required_to_capture[goals[i] - 1] -
                 game_board_df$current_progress[goals[i] - 1]
         }
     }
@@ -55,7 +56,7 @@ sum_score_vector_generator <- function(sum_pair,
         if (goals[i] != 0) {
             sum_score_vector[i + 7] <-
                 game_board_df$current_progress[goals[i] - 1] /
-                    game_board_df$rolls_needed_to_capture[goals[i] - 1]
+                    game_board_df$rolls_required_to_capture[goals[i] - 1]
         }
     }
 
