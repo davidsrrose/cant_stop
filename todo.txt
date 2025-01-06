@@ -1,0 +1,5 @@
+- Write psuedocode for application
+- Get single game working (with random choices for sums)
+- Add chuck_logic
+- Add visuals of board
+- Add functions to animate game attempts (this will be dummy info of like 1/1000 games or something?)
