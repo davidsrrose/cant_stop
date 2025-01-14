@@ -1,22 +1,28 @@
 from chuck_brain import choose_sum_pair 
 from game import CantStopGame
+from utils import time_function, spinnner_animation
 
 def single_game() -> bool:
     """  Plays one single game of solitaire cant_stop """
     # Initialized game
     game = CantStopGame()
     is_game_over = False
+    game.goals_to_complete.append(4)
     game.goals_to_complete.append(7)
+    game.goals_to_complete.append(10)
+
+    #print(" new game! ----------------------------------------------")
 
     while not is_game_over:
 
         # Roll dice
         roll = game.roll()
+        #print("roll: ", roll)
 
         # Pick sum from roll options
         # TODO add logic for choosing sums - this is the hard part :)
-        sums = choose_sum_pair(roll)
-
+        sums = choose_sum_pair(roll, game.goals_to_complete)
+       #print("chosen_sums: ", sums)
         # Advance board
         game.advance_board(sums)
 
@@ -28,6 +34,8 @@ def single_game() -> bool:
     
     return game.is_game_win()
 
+@spinnner_animation
+@time_function
 def main(games: int) -> None:
 
     wins = 0
@@ -41,9 +49,10 @@ def main(games: int) -> None:
         else:
             losses = losses + 1
 
+    print("\n")
     print("wins: ",wins)
     print("losses: ",losses)
     print("win probability: ", wins/games)
 
 if __name__ == "__main__":
-    data = main(games = 1000000)
+    data = main(games = 100000)

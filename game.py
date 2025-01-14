@@ -46,7 +46,7 @@ class CantStopGame:
 
     def is_game_win(self) -> bool:
         """ Checks if game was won """
-        if len(self.goals_completed) >= 1:
+        if len(self.goals_completed) >= 3:
             self.game_over = True
             return True
         return False
@@ -89,7 +89,7 @@ if __name__ == "__main__":
         game.advance_board([2])
     print(game.board_progress)
 
-    game.goals_to_complete.append()
+    game.goals_to_complete.append(5)
     print("goals to complete: ", game.goals_to_complete)
     print("goals completed: ", game.goals_completed)
 
