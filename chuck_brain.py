@@ -1,4 +1,4 @@
-from game import CantStopGame
+
 
 def choose_sum_pair(roll, goals) -> list:
 
@@ -26,9 +26,3 @@ def goal_advancement_rank(roll, goals) -> list:
 
     index = scores.index(max(scores))
     return index
-
-game = CantStopGame()
-goals = [4,7,10]
-roll = game.roll()
-print(roll)
-print(choose_sum_pair(roll, goals))

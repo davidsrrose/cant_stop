@@ -1,17 +1,19 @@
 import random
-import pandas
 
+from chuck_brain import choose_sum_pair
 from itertools import combinations
+from loguru import logger
 
 class CantStopGame:
     """Class for managing the state of a cant stop game"""
     
     def __init__(self) -> None:
-        self.board_progress = [0] * 11  # Columns 2 through 12 (index 0 -> 2, index 10 -> 12)
-        self.progress_targets = [3, 5, 5, 9, 11, 13, 11, 9, 5, 5, 3] # Number needed to complete 
-        self.goals_to_complete = []  # list of goals we are trying to complete
-        self.goals_completed = []  # Track completed columns
-        self.game_over = False
+        self.board_labels = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] # Number needed to complete each sum 
+        self.board_progress = [0] * 11  # Columns for dice sums 2 through 12 (index 0 for sum 2, index 10 for sum 12)
+        self.progress_targets = [3, 5, 5, 9, 11, 13, 11, 9, 5, 5, 3] # Number needed to complete each sum 
+        self.progress_targets = [3, 5, 5, 9, 11, 13, 11, 9, 5, 5, 3] # Number needed to complete each sum 
+        self.goals_to_complete = []  # List of goals we are trying to complete
+        self.goals_completed = []  # List completed goals
         self.win = False
  
     def roll(self) -> list[tuple[int, int]]:
@@ -28,6 +30,7 @@ class CantStopGame:
             (sums[1], sums[4]),
             (sums[2], sums[3])
             ]
+        logger.info(f'Dice rolled - {roll_results}, sum pairs {sum_pairs}')
         return sum_pairs
 
     def advance_board(self, sums) -> None:
@@ -51,20 +54,36 @@ class CantStopGame:
             return True
         return False
     
-    def is_game_over(self, sums) -> bool:
+    def is_game_over(self, sums: list | None) -> bool:
         """ Checks if game is over """
+        # No sums means no roll yet, so game not over
+        if sums is None:
+            return False
+
         # Game is over if win or loss
         if self.is_game_win() or self.is_game_loss(sums):
             return True
         
-    def update_goals(self):
+        return False
+        
+    def update_goals(self) -> None:
         """ Moves number from goals_to_complete to goals_completed """
         for goal in self.goals_to_complete:
             if self.board_progress[goal - 2] == self.progress_targets[goal -2]:
                 self.goals_to_complete.remove(goal)
                 self.goals_completed.append(goal)
-                #print(f"Goal completed! {goal} has been captured")
+                logger.success(f'Goal of {goal} captured!')
 
+    def choose_sum_pair(self, roll) -> list[int,int]:
+        chosen_sum_pair = roll[0]
+        logger.info(f'Chose sum pair {chosen_sum_pair}')
+        return chosen_sum_pair
+    
+    def log_board_progress(self) -> None:
+        logger.info(f'                {self.board_labels}')
+        logger.info(f'Board progress: {self.board_progress}')
+
+    
         
 if __name__ == "__main__":
 

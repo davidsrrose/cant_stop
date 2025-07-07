@@ -2,6 +2,8 @@ import sys
 import time
 import threading
 
+from loguru import logger
+
 def spinnner_animation(func):
     def wrapper(*args,**kwargs):
         spinner = ["|", "/", "-", "\\"]  # Spinner characters
@@ -35,11 +37,11 @@ def time_function(func) -> None:
         try:
             result = func(*args, **kwargs)
         except Exception as e:
-            print(f"Error in function {func.__name__}: {e}")
+            logger.info(f"Error in function {func.__name__}: {e}")
             raise
         elapsed_time = time.time() - start_time
 
-        print(f"Function '{func.__name__}' executed in {elapsed_time:.1f} seconds / {(elapsed_time/60):.1f} mins")
+        logger.info(f"Function '{func.__name__}' executed in {elapsed_time:.1f} seconds / {(elapsed_time/60):.1f} mins")
 
         return result
 
