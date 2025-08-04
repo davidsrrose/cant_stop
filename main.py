@@ -7,10 +7,10 @@ def single_game() -> bool:
     # Initialize game
     game = CantStopGame()
 
-    # Preset goals dev!)
-    game.goals_to_complete.append(4)
-    game.goals_to_complete.append(7)
-    game.goals_to_complete.append(10)
+    # Preset goals (dev!)
+    game.goals.append(4)
+    game.goals.append(7)
+    game.goals.append(10)
 
     sums = None
 
@@ -54,4 +54,4 @@ def main(games: int) -> None:
     print("win probability: ", wins/games)
 
 if __name__ == "__main__":
-    data = main(games = 1)
+    data = main(games = 10)
